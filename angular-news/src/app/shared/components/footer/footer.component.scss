@@ -1,0 +1,23 @@
+.app-footer {
+  margin-top: 32px;
+  padding: 24px 16px;
+  background: var(--app-surface);
+  border-top: 1px solid var(--app-border);
+  text-align: center;
+  color: var(--app-text-muted);
+}
+
+.footer-content p {
+  margin: 4px 0;
+  font-size: 0.85rem;
+}
+
+.attribution a {
+  color: var(--app-primary);
+  text-decoration: none;
+}
+
+.copyright {
+  font-size: 0.78rem;
+  opacity: 0.8;
+}

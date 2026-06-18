@@ -1,0 +1,29 @@
+<mat-card class="news-card" [routerLink]="['/noticias/detalhe', detailLink]">
+  <div class="thumb-wrapper">
+    <img [src]="image" (error)="onImageError($event)" [alt]="article.title" class="thumb" />
+    <button
+      mat-mini-fab
+      class="favorite-btn"
+      [color]="isFavorite ? 'accent' : undefined"
+      (click)="toggleFavorite($event)"
+      [matTooltip]="isFavorite ? 'Remover dos favoritos' : 'Salvar como favorito'"
+      [attr.aria-label]="isFavorite ? 'Remover dos favoritos' : 'Salvar como favorito'"
+    >
+      <mat-icon>{{ isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
+    </button>
+  </div>
+
+  <mat-card-content>
+    <div class="meta">
+      <span class="source">{{ article.source.name }}</span>
+      <span class="dot">•</span>
+      <span class="date">{{ article.publishedAt | date: 'dd/MM/yyyy HH:mm' }}</span>
+    </div>
+    <h3 class="title">{{ article.title }}</h3>
+    <p class="description" *ngIf="article.description">{{ article.description }}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <span class="read-more">Ler mais <mat-icon inline="true">arrow_forward</mat-icon></span>
+  </mat-card-actions>
+</mat-card>

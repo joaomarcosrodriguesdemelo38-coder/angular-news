@@ -1,0 +1,78 @@
+<mat-toolbar color="primary" class="header-toolbar">
+  <a routerLink="/noticias" class="brand" (click)="closeMobileMenu()">
+    <mat-icon aria-hidden="true">newspaper</mat-icon>
+    <span>AngularNews</span>
+  </a>
+
+  <nav class="nav-links desktop-only">
+    <a routerLink="/noticias" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Notícias</a>
+    <a routerLink="/favoritos" routerLinkActive="active-link">Favoritos</a>
+  </nav>
+
+  <div class="search-box desktop-only">
+    <mat-icon>search</mat-icon>
+    <input
+      #searchInput
+      type="text"
+      placeholder="Buscar notícias..."
+      (keyup.enter)="search(searchInput.value)"
+    />
+  </div>
+
+  <span class="spacer"></span>
+
+  <button mat-icon-button (click)="toggleTheme()" [matTooltip]="(isDarkMode$ | async) ? 'Alternar para Modo Claro' : 'Alternar para Modo Escuro'" class="desktop-only theme-btn">
+    <mat-icon>{{ (isDarkMode$ | async) ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
+
+  <ng-container *ngIf="currentUser$ | async as user; else guestActions">
+    <button mat-button [matMenuTriggerFor]="userMenu" class="desktop-only">
+      <mat-icon>account_circle</mat-icon>
+      {{ user.name }}
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <a mat-menu-item routerLink="/perfil"><mat-icon>person</mat-icon> Meu perfil</a>
+      <a mat-menu-item routerLink="/favoritos"><mat-icon>favorite</mat-icon> Favoritos</a>
+      <button mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon> Sair</button>
+    </mat-menu>
+  </ng-container>
+
+  <ng-template #guestActions>
+    <a mat-button routerLink="/auth/login" class="desktop-only">Entrar</a>
+    <a mat-flat-button color="accent" routerLink="/auth/cadastro" class="desktop-only">Cadastrar</a>
+  </ng-template>
+
+  <button mat-icon-button class="mobile-only" (click)="toggleMobileMenu()" aria-label="Abrir menu">
+    <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="mobile-menu" *ngIf="mobileMenuOpen">
+  <div class="search-box">
+    <mat-icon>search</mat-icon>
+    <input
+      #mobileSearchInput
+      type="text"
+      placeholder="Buscar notícias..."
+      (keyup.enter)="search(mobileSearchInput.value)"
+    />
+  </div>
+  <a routerLink="/noticias" (click)="closeMobileMenu()">Notícias</a>
+  <a routerLink="/favoritos" (click)="closeMobileMenu()">Favoritos</a>
+
+  <div class="mobile-theme-row">
+    <span>Aparência</span>
+    <button mat-icon-button (click)="toggleTheme()" aria-label="Alternar tema">
+      <mat-icon>{{ (isDarkMode$ | async) ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+  </div>
+
+  <ng-container *ngIf="currentUser$ | async as user; else guestMobileActions">
+    <a routerLink="/perfil" (click)="closeMobileMenu()">Meu perfil ({{ user.name }})</a>
+    <button class="logout-link" (click)="logout()">Sair</button>
+  </ng-container>
+  <ng-template #guestMobileActions>
+    <a routerLink="/auth/login" (click)="closeMobileMenu()">Entrar</a>
+    <a routerLink="/auth/cadastro" (click)="closeMobileMenu()">Cadastrar</a>
+  </ng-template>
+</div>

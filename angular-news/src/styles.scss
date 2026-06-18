@@ -1,0 +1,148 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+:root {
+  --app-bg: #f8fafc;
+  --app-surface: #ffffff;
+  --app-primary: #4f46e5;
+  --app-primary-hover: #4338ca;
+  --app-accent: #ec4899;
+  --app-text: #0f172a;
+  --app-text-muted: #64748b;
+  --app-border: #e2e8f0;
+  --app-card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --app-toolbar-bg: #4f46e5;
+  --app-toolbar-text: #ffffff;
+}
+
+body.dark-theme {
+  --app-bg: #0f172a;
+  --app-surface: #1e293b;
+  --app-primary: #818cf8;
+  --app-primary-hover: #6366f1;
+  --app-accent: #f472b6;
+  --app-text: #f8fafc;
+  --app-text-muted: #94a3b8;
+  --app-border: #334155;
+  --app-card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+  --app-toolbar-bg: #1e293b;
+  --app-toolbar-text: #f8fafc;
+
+  /* Overrides for Angular Material in Dark Mode */
+  .mat-mdc-card {
+    background-color: var(--app-surface) !important;
+    color: var(--app-text) !important;
+  }
+  
+  .mat-mdc-card-content, .mat-mdc-card-title, .mat-mdc-card-subtitle, .mat-mdc-card-actions {
+    color: var(--app-text) !important;
+  }
+  
+  .mat-mdc-card-subtitle {
+    color: var(--app-text-muted) !important;
+  }
+  
+  .mat-toolbar.mat-primary {
+    background-color: var(--app-toolbar-bg) !important;
+    color: var(--app-toolbar-text) !important;
+  }
+  
+  .mat-mdc-menu-panel {
+    background-color: var(--app-surface) !important;
+    color: var(--app-text) !important;
+  }
+  
+  .mat-mdc-menu-item {
+    color: var(--app-text) !important;
+    
+    mat-icon {
+      color: var(--app-text) !important;
+    }
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08) !important;
+    }
+  }
+
+  .mat-mdc-form-field {
+    --mdc-filled-text-field-container-color: rgba(255, 255, 255, 0.05) !important;
+    --mdc-filled-text-field-focus-active-indicator-color: var(--app-primary) !important;
+    --mdc-filled-text-field-focus-label-text-color: var(--app-primary) !important;
+    --mdc-filled-text-field-input-text-color: var(--app-text) !important;
+    --mdc-filled-text-field-label-text-color: var(--app-text-muted) !important;
+    
+    --mdc-outlined-text-field-container-color: transparent !important;
+    --mdc-outlined-text-field-focus-outline-color: var(--app-primary) !important;
+    --mdc-outlined-text-field-outline-color: var(--app-border) !important;
+    --mdc-outlined-text-field-input-text-color: var(--app-text) !important;
+    --mdc-outlined-text-field-label-text-color: var(--app-text-muted) !important;
+  }
+  
+  .mat-mdc-button, .mat-mdc-outlined-button, .mat-mdc-raised-button, .mat-mdc-unelevated-button {
+    --mdc-outlined-button-outline-color: var(--app-border) !important;
+    --mdc-outlined-button-label-text-color: var(--app-text) !important;
+  }
+
+  .mat-divider {
+    border-top-color: var(--app-border) !important;
+  }
+
+  .offline-banner {
+    background-color: rgba(217, 119, 6, 0.1) !important;
+    color: #f59e0b !important;
+  }
+
+  .error-banner {
+    background-color: rgba(239, 68, 68, 0.15) !important;
+    color: #f87171 !important;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+  
+  .mobile-menu {
+    background-color: var(--app-surface) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    
+    a, .logout-link {
+      color: var(--app-text) !important;
+      border-bottom-color: var(--app-border) !important;
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--app-bg);
+  color: var(--app-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 8px 0 16px;
+  color: var(--app-text);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--app-text-muted);
+}
+
+@media (max-width: 599px) {
+  .page-container {
+    padding: 16px 12px 32px;
+  }
+}
+

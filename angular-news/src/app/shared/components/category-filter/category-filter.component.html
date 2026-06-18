@@ -1,0 +1,14 @@
+<div class="category-filter" role="tablist">
+  <button
+    *ngFor="let category of categories"
+    type="button"
+    class="chip"
+    [class.active]="category.value === selected"
+    (click)="select(category.value)"
+    role="tab"
+    [attr.aria-selected]="category.value === selected"
+  >
+    <mat-icon inline="true">{{ category.icon }}</mat-icon>
+    {{ category.label }}
+  </button>
+</div>

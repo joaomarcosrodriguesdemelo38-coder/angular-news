@@ -1,0 +1,15 @@
+<div class="page-container">
+  <h1 class="section-title">Suas notícias favoritas</h1>
+
+  <ng-container *ngIf="favorites$ | async as favorites">
+    <div class="empty-state" *ngIf="favorites.length === 0">
+      <mat-icon class="empty-icon">favorite_border</mat-icon>
+      <p>Você ainda não salvou nenhuma notícia.</p>
+      <a mat-flat-button color="primary" routerLink="/noticias">Explorar notícias</a>
+    </div>
+
+    <div class="news-grid" *ngIf="favorites.length > 0">
+      <app-news-card *ngFor="let article of favorites" [article]="article"></app-news-card>
+    </div>
+  </ng-container>
+</div>

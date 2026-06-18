@@ -1,0 +1,36 @@
+<div class="page-container">
+  <div class="offline-banner" *ngIf="isOffline">
+    <mat-icon>cloud_off</mat-icon>
+    Você está offline. Exibindo o último conteúdo salvo localmente.
+  </div>
+
+  <ng-container *ngIf="searchQuery; else categoryHeader">
+    <div class="search-header">
+      <h1 class="section-title">Resultados para "{{ searchQuery }}"</h1>
+      <button mat-stroked-button (click)="clearSearch()">
+        <mat-icon inline="true">close</mat-icon> Limpar busca
+      </button>
+    </div>
+  </ng-container>
+  <ng-template #categoryHeader>
+    <h1 class="section-title">Notícias em {{ categoryLabel }}</h1>
+    <app-category-filter [selected]="selectedCategory" (selectedChange)="onCategoryChange($event)"></app-category-filter>
+  </ng-template>
+
+  <p class="updated-at" *ngIf="lastUpdated && !loading">
+    <mat-icon inline="true">update</mat-icon>
+    Atualizado às {{ lastUpdated | date: 'HH:mm' }}
+  </p>
+
+  <app-loading-spinner *ngIf="loading" message="Buscando notícias..."></app-loading-spinner>
+
+  <div class="empty-state" *ngIf="!loading && errorMessage">
+    <mat-icon class="empty-icon">sentiment_dissatisfied</mat-icon>
+    <p>{{ errorMessage }}</p>
+    <button mat-flat-button color="primary" (click)="retry()">Tentar novamente</button>
+  </div>
+
+  <div class="news-grid" *ngIf="!loading && articles.length > 0">
+    <app-news-card *ngFor="let article of articles" [article]="article"></app-news-card>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+.empty-icon {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+  margin-bottom: 8px;
+  color: #c2c6d1;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 480px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+}

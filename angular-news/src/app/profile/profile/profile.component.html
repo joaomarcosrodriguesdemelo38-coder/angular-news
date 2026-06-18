@@ -1,0 +1,89 @@
+<div class="page-container profile-page">
+  <h1 class="section-title">Meu perfil</h1>
+
+  <div class="profile-grid" *ngIf="user">
+    <!-- Card de Dados de Usuário e Stats -->
+    <mat-card class="profile-card info-card">
+      <mat-card-content>
+        <div class="profile-header">
+          <div class="avatar"><mat-icon>account_circle</mat-icon></div>
+          <div class="user-details">
+            <h2>{{ user.name }}</h2>
+            <p class="email">{{ user.email }}</p>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="stats-section">
+          <div class="profile-row">
+            <span class="row-label">
+              <mat-icon class="icon-favorite">favorite</mat-icon>
+              Notícias favoritas
+            </span>
+            <strong class="badge-count">{{ favoritesCount }}</strong>
+          </div>
+
+          <div class="profile-row">
+            <span class="row-label">
+              <mat-icon class="icon-notifications">notifications</mat-icon>
+              Notificações push
+            </span>
+            <strong class="status-label">{{ notificationStatusLabel }}</strong>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button
+            mat-stroked-button
+            *ngIf="notifications.isSupported && notifications.permission === 'default'"
+            (click)="enableNotifications()"
+            class="enable-btn w-full"
+          >
+            <mat-icon>notifications_active</mat-icon> Ativar notificações
+          </button>
+
+          <button mat-flat-button color="primary" class="logout-btn w-full" (click)="logout()">
+            <mat-icon>logout</mat-icon> Sair da conta
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Card de Configurações da API -->
+    <mat-card class="profile-card api-card">
+      <mat-card-content>
+        <h3 class="card-subtitle"><mat-icon inline="true">key</mat-icon> Chave de API Personalizada</h3>
+        <p class="api-instructions">
+          A NewsAPI.org requer uma chave de acesso individual. Por padrão, a aplicação roda em modo de demonstração (com notícias simuladas). Para carregar notícias em tempo real:
+        </p>
+        <ol class="api-steps">
+          <li>Cadastre-se gratuitamente em <a href="https://newsapi.org/register" target="_blank" rel="noopener">newsapi.org</a> para receber sua chave.</li>
+          <li>Insira a chave no campo abaixo e clique em salvar.</li>
+        </ol>
+
+        <mat-form-field appearance="outline" class="api-form-field">
+          <mat-label>Chave da NewsAPI</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Ex: c63e5a977843..."
+            [(ngModel)]="customApiKey"
+          />
+          <button matSuffix mat-icon-button *ngIf="customApiKey" (click)="clearApiKey()" aria-label="Limpar campo" matTooltip="Limpar chave">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div class="api-actions">
+          <button mat-flat-button color="primary" class="save-api-btn" (click)="saveApiKey()" [disabled]="!customApiKey">
+            <mat-icon>save</mat-icon> Salvar Chave
+          </button>
+          <button mat-stroked-button class="reset-api-btn" (click)="clearApiKey()" *ngIf="customApiKey">
+            Restaurar Padrão
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

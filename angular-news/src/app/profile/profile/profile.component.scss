@@ -1,0 +1,183 @@
+.profile-page {
+  padding-bottom: 64px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.profile-card {
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: var(--app-card-shadow) !important;
+  background-color: var(--app-surface);
+  color: var(--app-text);
+  border: 1px solid var(--app-border);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+
+  .avatar mat-icon {
+    font-size: 64px;
+    height: 64px;
+    width: 64px;
+    color: var(--app-primary);
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 600;
+  }
+
+  .email {
+    margin: 4px 0 0;
+    color: var(--app-text-muted);
+    font-size: 0.95rem;
+  }
+}
+
+.stats-section {
+  padding: 8px 0;
+}
+
+.profile-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  font-size: 0.95rem;
+  border-bottom: 1px dashed var(--app-border);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .row-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--app-text);
+
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      
+      &.icon-favorite {
+        color: var(--app-accent);
+      }
+      
+      &.icon-notifications {
+        color: var(--app-primary);
+      }
+    }
+  }
+
+  .badge-count {
+    background-color: rgba(79, 70, 229, 0.1);
+    color: var(--app-primary);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+  }
+
+  .status-label {
+    color: var(--app-text-muted);
+    font-weight: 500;
+  }
+}
+
+.action-buttons {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.w-full {
+  width: 100%;
+}
+
+/* API Card Styles */
+.card-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--app-text);
+  
+  mat-icon {
+    color: var(--app-primary);
+  }
+}
+
+.api-instructions {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--app-text-muted);
+  margin-bottom: 12px;
+}
+
+.api-steps {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--app-text);
+  padding-left: 20px;
+  margin-bottom: 20px;
+
+  a {
+    color: var(--app-primary);
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.api-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.api-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  button {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 599px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .profile-card {
+    padding: 16px;
+  }
+  
+  .api-actions {
+    flex-direction: column;
+    
+    button {
+      width: 100%;
+    }
+  }
+}
